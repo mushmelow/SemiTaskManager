@@ -3,13 +3,14 @@ class CreateTasks < ActiveRecord::Migration[5.0]
     create_table :tasks do |t|
       t.string :task_name
       t.string :description
+      t.boolean :status
       t.integer :user_id
 
       t.timestamps
     end
 
-    add_index :tasks, :user_id
-    
+
+
 
   end
 end

@@ -1,4 +1,7 @@
 class User < ApplicationRecord
+
+  has_many :task
+
   before_save { self.email = email.downcase }
 
   has_secure_password

@@ -10,7 +10,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171024182226) do
+ActiveRecord::Schema.define(version: 20171026160118) do
+
+  create_table "sub_tasks", force: :cascade do |t|
+    t.string   "sub_task_name"
+    t.string   "description"
+    t.boolean  "status"
+    t.integer  "task_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  create_table "tasks", force: :cascade do |t|
+    t.string   "task_name"
+    t.string   "description"
+    t.boolean  "status"
+    t.integer  "user_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "name"
