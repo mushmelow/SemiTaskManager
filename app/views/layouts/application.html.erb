@@ -9,6 +9,13 @@
   </head>
 
   <body>
+    <p> bonjour <%= User.find(session[:user_id]).name %>    </p>
+
+    <% flash.each do |message_type, message| %>
+      <div class="alert alert-<%= message_type %>"><%= message %></div>
+  <% end %>
+
+
     <%= yield %>
   </body>
 </html>
