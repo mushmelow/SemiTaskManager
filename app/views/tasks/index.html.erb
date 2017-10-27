@@ -9,9 +9,8 @@
 
   <% @tasks.each do |task| %>
       <tr>
-
         <td>
-          <%= task.task_name %>
+          <%= task.name %>
 
         </td>
         <td>
@@ -19,19 +18,16 @@
         </td>
 
         <td>
-          <%= task.user.name %>
+          <%= task.author.name %>
         </td>
-        <td>
 
-          <%= link_to("task", task_path(task)) %>
+        <td>
+          <%= link_to("link to task", task_path(task)) %>
           <%= link_to("delete task", task_path(task),method: "delete") %>
         </td>
-
-
       </tr>
-
   <% end %>
-
-
 </table>
+
+<%= link_to("Create a new task", new_task_path) %>
 

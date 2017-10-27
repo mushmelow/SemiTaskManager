@@ -1,11 +1,10 @@
 Rails.application.routes.draw do
 
-  root :to => "sessions#new"
-
-  resources :users
+  resources :users, only:[:new, :create]
   resources :tasks
-  resources :sessions
+  resources :sessions, only: [:create, :new, :destroy]
 
+  root :to => "tasks#index"
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

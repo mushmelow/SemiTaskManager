@@ -13,10 +13,10 @@
 ActiveRecord::Schema.define(version: 20171026134258) do
 
   create_table "tasks", force: :cascade do |t|
-    t.string   "task_name"
+    t.string   "name"
     t.string   "description"
     t.boolean  "status"
-    t.integer  "user_id"
+    t.integer  "author_id"
     t.integer  "parent_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false

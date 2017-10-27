@@ -1,5 +1,6 @@
 class TasksController < ApplicationController
 
+  before_action :set_current_user
   before_action :set_page, only: [:show]
 
   def index
@@ -17,11 +18,12 @@ class TasksController < ApplicationController
 
   def create
     @task = Task.new(user_params)
-    @task.user_id= User.find(session[:user_id]).id
+    @task.author = @current_user
 
     if @task.save
       redirect_to task_path(@task)
     else
+      exit
       render 'new'
     end
   end
@@ -37,7 +39,7 @@ class TasksController < ApplicationController
   end
 
   def user_params
-    params.require(:task).permit(:task_name, :description)
+    params.require(:task).permit(:name, :description)
   end
 
 

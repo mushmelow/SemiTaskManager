@@ -1,14 +1,8 @@
 class UsersController < ApplicationController
+
+  before_action :set_current_user, except: [:new, :create]
   before_action :set_page, only: [:show]
 
-  def index
-
-  end
-
-
-  def show
-
-  end
 
 
   def new
@@ -19,7 +13,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
 
-      redirect_to user_path(@user)
+      redirect_to new_session_path
     else
 
       render 'new'
