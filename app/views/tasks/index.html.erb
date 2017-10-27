@@ -1,0 +1,37 @@
+<table style="width:100%">
+
+  <tr>
+    <th>Tache</th>
+    <th>description</th>
+    <th>auteur</th>
+    <th>lien</th>
+  </tr>
+
+  <% @tasks.each do |task| %>
+      <tr>
+
+        <td>
+          <%= task.task_name %>
+
+        </td>
+        <td>
+          <%= task.description %>
+        </td>
+
+        <td>
+          <%= task.user.name %>
+        </td>
+        <td>
+
+          <%= link_to("task", task_path(task)) %>
+          <%= link_to("delete task", task_path(task),method: "delete") %>
+        </td>
+
+
+      </tr>
+
+  <% end %>
+
+
+</table>
+

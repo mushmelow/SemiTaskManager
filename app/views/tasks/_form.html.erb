@@ -1,0 +1,19 @@
+<h1>create!</h1>
+
+<%= form_for(@task)do |f| %>
+
+    <div class="name">
+      <%= f.label :task_name %>
+      <%= f.text_field :task_name %>
+    </div>
+
+    <div class="name">
+      <%= f.label :description %>
+      <%= f.text_field :description %>
+    </div>
+
+
+
+    <%= f.submit "Submit" %>
+
+<% end %>

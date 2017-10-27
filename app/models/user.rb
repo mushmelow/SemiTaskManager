@@ -1,6 +1,6 @@
 class User < ApplicationRecord
 
-  has_many :task
+  has_many :tasks
 
   before_save { self.email = email.downcase }
 
