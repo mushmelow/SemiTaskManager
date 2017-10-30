@@ -1,36 +1,43 @@
-<h1>Signup!</h1>
 
-<%= form_for(@user)do |f| %>
 
-    <div class="name">
-      <%= f.label :name %>
-      <%= f.text_field :name %>
-    </div>
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <h1>Signup!</h1>
+    <%= form_for(@user)do |f| %>
 
-    <div class="name">
-      <%= f.label :email %>
-      <%= f.text_field :email %>
-    </div>
 
-    <div class="name">
-      <%= f.label :password %>
-      <%= f.password_field :password %>
-    </div>
+          <%= f.label :name %>
+          <%= f.text_field :name, class: 'form-control'%>
 
-    <div class="name">
-      <%= f.label :password_confirmation %>
-      <%= f.password_field :password_confirmation %>
-    </div>
 
-    <% if @user.errors.any?%>
-        <h2>Errors: </h2>
-        <ul>
-          <% @user.errors.full_messages.each do |message|%>
-              <li><%= message %> </li>
-          <% end%>
-        </ul>
-    <%end%>
+          <%= f.label :email %>
+          <%= f.text_field :email, class: 'form-control' %>
 
-    <%= f.submit "Submit" %>
 
-<% end %>
+
+          <%= f.label :password %>
+          <%= f.password_field :password, class: 'form-control' %>
+
+
+
+          <%= f.label :password_confirmation %>
+          <%= f.password_field :password_confirmation, class: 'form-control' %>
+
+
+        <div class="errors">
+        <% if @user.errors.any?%>
+            <h2>Errors: </h2>
+            <ul>
+              <% @user.errors.full_messages.each do |message|%>
+                  <li><%= message %> </li>
+              <% end%>
+            </ul>
+        <%end%>
+        </div>
+
+
+        <%= f.submit "Sign up", class: "btn btn-primary" %>
+
+    <% end %>
+  </div>
+</div>

@@ -1,33 +1,102 @@
-<table style="width:100%">
 
-  <tr>
-    <th>Tache</th>
-    <th>description</th>
-    <th>auteur</th>
-    <th>lien</th>
-  </tr>
+<div class="content-wrapper">
+  <div class="container-fluid">
+    <div class="card mb-3">
+      <div class="card-header">
+        <i class="fa fa-table"></i> List of tasks
+      </div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <div id="dataTable_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap4">
+            <div class="row">
+              <div class="col-sm-12 col-md-6">
+              <div class="dataTables_length" id="dataTable_length">
+                <label>Show
+                  <select name="dataTable_length" aria-controls="dataTable" class="form-control form-control-sm">
+                    <option value="10">10</option>
+                    <option value="25">25</option>
+                    <option value="50">50</option>
+                    <option value="100">100</option>
+                  </select> entries
+                </label>
+              </div>
+              </div>
+              <div class="col-sm-12 col-md-6">
+                <div id="dataTable_filter" class="dataTables_filter">
+                  <label>Search:<input type="search" class="form-control form-control-sm" placeholder="" aria-controls="dataTable">
+                  </label>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-12">
+                <table class="table table-bordered dataTable" id="dataTable" width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info" style="width: 100%;">
+            <thead>
+            <tr role="row"><th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Task name: activate to sort column descending" aria-sort="ascending" style="width: 257px;">Task name</th>
+              <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Author: activate to sort column ascending" style="width: 410px;">Author</th>
+              <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Description: activate to sort column ascending" style="width: 197px;">Description</th>
+              <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Start date: activate to sort column ascending" style="width: 177px;">Start date</th>
+              <th class="link" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Link to task " style="width: 177px;">Link to task</th>
+              <th class="link" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Delete task" style="width: 177px;">Delete task</th>
+            </tr>
+            </thead>
+            <tfoot>
+              <th rowspan="1" colspan="1">Task name</th>
+              <th rowspan="1" colspan="1">Author</th>
+              <th rowspan="1" colspan="1">Description</th>
+              <th rowspan="1" colspan="1">Start date</th>
+              <th rowspan="1" colspan="1">Link to task</th>
+              <th rowspan="1" colspan="1">Delete task</th>
+            </tfoot>
+            <tbody>
 
-  <% @tasks.each do |task| %>
-      <tr>
-        <td>
-          <%= task.name %>
+            <% @tasks.each do |task| %>
 
-        </td>
-        <td>
-          <%= task.description %>
-        </td>
+              <tr role="row" class="odd">
+                <td class="sorting_1"> <%= task.name %> </td>
+                <td><%= task.author.name %></td>
+                <td><%= task.description %></td>
+                <td> <%= task.created_at%> </td>
+                <td>
+                  <%= link_to("Link to task", task_path(task)) %>
+                </td>
+                <td>
+                  <%= link_to("Delete task", task_path(task),method: "delete") %>
+                </td>
+              </tr>
+            <% end %>
 
-        <td>
-          <%= task.author.name %>
-        </td>
+            </tbody>
+          </table>
+          </div>
+          </div><div class="row"><div class="col-sm-12 col-md-5">
+            <div class="dataTables_info" id="dataTable_info" role="status" aria-live="polite">Showing 1 to 10 of 57 entries</div>
+          </div><div class="col-sm-12 col-md-7">
+            <div class="dataTables_paginate paging_simple_numbers" id="dataTable_paginate">
+              <ul class="pagination"><li class="paginate_button page-item previous disabled" id="dataTable_previous">
+                <a href="#" aria-controls="dataTable" data-dt-idx="0" tabindex="0" class="page-link">Previous</a>
+              </li><li class="paginate_button page-item active">
+                <a href="#" aria-controls="dataTable" data-dt-idx="1" tabindex="0" class="page-link">1</a>
+              </li><li class="paginate_button page-item ">
+                <a href="#" aria-controls="dataTable" data-dt-idx="2" tabindex="0" class="page-link">2</a>
+              </li>
+                <li class="paginate_button page-item "><a href="#" aria-controls="dataTable" data-dt-idx="3" tabindex="0" class="page-link">3</a></li>
+                <li class="paginate_button page-item "><a href="#" aria-controls="dataTable" data-dt-idx="4" tabindex="0" class="page-link">4</a></li>
+                <li class="paginate_button page-item "><a href="#" aria-controls="dataTable" data-dt-idx="5" tabindex="0" class="page-link">5</a></li>
+                <li class="paginate_button page-item "><a href="#" aria-controls="dataTable" data-dt-idx="6" tabindex="0" class="page-link">6</a></li>
+                <li class="paginate_button page-item next" id="dataTable_next"><a href="#" aria-controls="dataTable" data-dt-idx="7" tabindex="0" class="page-link">Next</a></li>
+              </ul>
+            </div>
+          </div>
+          </div>
+          </div>
+        </div>
+      </div>
+      <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+    </div>
 
-        <td>
-          <%= link_to("link to task", task_path(task)) %>
-          <%= link_to("delete task", task_path(task),method: "delete") %>
-        </td>
-      </tr>
-  <% end %>
-</table>
 
-<%= link_to("Create a new task", new_task_path) %>
 
+    <%= link_to("Create a new task", new_task_path) %>
+  </div>
+</div>

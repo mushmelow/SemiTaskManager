@@ -2,4 +2,11 @@
 
 <h1><%= @task.name %></h1>
 
-<p> <%= link_to("link to task", tasks_path) %> </p>
+<p><%= @task.description %> </p>
+
+<p><%= @task.status %> </p>
+
+
+
+
+<p> <%= link_to("link to all task", tasks_path) %> </p>

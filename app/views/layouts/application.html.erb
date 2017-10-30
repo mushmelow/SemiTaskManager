@@ -10,21 +10,33 @@
 
   <body>
 
-  <% if session[:user_id] != nil  %>
-  <p>Bonjour <%= User.find(session[:user_id]).name%> </p>
-  <%end %>
+  <nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#">Semi TaskManager</a>
+      </div>
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="#">Home</a></li>
 
-  <% if session[:user_id] != nil  %>
-  <%= link_to("Disconnect", session_path(session),method: "delete") %>
-  <%end %>
+
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+
+        <li>
+          <span class="glyphicon glyphicon-user">
+             <%= link_to("Logout",session_path(session),method: "delete") %>
+          </span>
+        </li>
 
 
 
-    <% flash.each do |message_type, message| %>
-      <div class="alert alert-<%= message_type %>"><%= message %></div>
-  <% end %>
+      </ul>
+    </div>
+  </nav>
 
 
     <%= yield %>
   </body>
 </html>
+
+
