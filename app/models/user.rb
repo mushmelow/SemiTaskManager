@@ -1,6 +1,7 @@
 class User < ApplicationRecord
 
   has_many :tasks
+  has_many :assign_task, class_name: "Task", foreign_key: "assign_id"
 
   before_save { self.email = email.downcase }
 

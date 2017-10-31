@@ -32,37 +32,45 @@
               <div class="col-sm-12">
                 <table class="table table-bordered dataTable" id="dataTable" width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info" style="width: 100%;">
             <thead>
-            <tr role="row"><th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Task name: activate to sort column descending" aria-sort="ascending" style="width: 257px;">Task name</th>
+            <tr role="row"><th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Task id: activate to sort column descending" aria-sort="ascending" style="width: 257px;">Task id</th>
+              <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Task name: activate to sort column ascending" style="width: 410px;">Task name</th>
               <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Author: activate to sort column ascending" style="width: 410px;">Author</th>
+              <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Assign to: activate to sort column ascending" style="width: 410px;">Assign to</th>
               <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Description: activate to sort column ascending" style="width: 197px;">Description</th>
+              <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Task Status: activate to sort column ascending" style="width: 410px;">Task Status</th>
               <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Start date: activate to sort column ascending" style="width: 177px;">Start date</th>
               <th class="link" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Link to task " style="width: 177px;">Link to task</th>
-              <th class="link" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Delete task" style="width: 177px;">Delete task</th>
+
             </tr>
             </thead>
             <tfoot>
+              <th rowspan="1" colspan="1">Task id</th>
               <th rowspan="1" colspan="1">Task name</th>
               <th rowspan="1" colspan="1">Author</th>
+              <th rowspan="1" colspan="1">Assign to</th>
               <th rowspan="1" colspan="1">Description</th>
+              <th rowspan="1" colspan="1">Task Status</th>
               <th rowspan="1" colspan="1">Start date</th>
               <th rowspan="1" colspan="1">Link to task</th>
-              <th rowspan="1" colspan="1">Delete task</th>
+
             </tfoot>
             <tbody>
 
             <% @tasks.each do |task| %>
 
               <tr role="row" class="odd">
-                <td class="sorting_1"> <%= task.name %> </td>
+
+                <td class="sorting_1"> <%= task.id %> </td>
+                <td><%= task.name %></td>
                 <td><%= task.author.name %></td>
+                <td><%= task.assign.name %></td>
                 <td><%= task.description %></td>
-                <td> <%= task.created_at%> </td>
+                <td><%= task.status %></td>
+                <td><%= task.created_at%> </td>
                 <td>
                   <%= link_to("Link to task", task_path(task)) %>
                 </td>
-                <td>
-                  <%= link_to("Delete task", task_path(task),method: "delete") %>
-                </td>
+
               </tr>
             <% end %>
 

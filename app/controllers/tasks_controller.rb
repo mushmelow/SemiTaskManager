@@ -13,17 +13,22 @@ class TasksController < ApplicationController
   end
 
   def new
-    @task = Task.new
+
+    @task = Task.new(parent_id: params[:parent_id])
+
   end
 
   def create
-    @task = Task.new(user_params)
+
+    @task = Task.new(task_params)
     @task.author = @current_user
+    @task.assign_id= task_params[:assign_id]
+
 
     if @task.save
       redirect_to task_path(@task)
     else
-      exit
+
       render 'new'
     end
   end
@@ -38,8 +43,8 @@ class TasksController < ApplicationController
     @task= Task.find(params[:id])
   end
 
-  def user_params
-    params.require(:task).permit(:name, :description)
+  def task_params
+    params.require(:task).permit(:name, :description, :assign_id, :status)
   end
 
 

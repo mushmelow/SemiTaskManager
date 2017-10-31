@@ -12,7 +12,26 @@
       <%= f.text_field :description %>
     </div>
 
+    <div class="control-group">
+      <%= f.label "Assign to", class:'control-label' %>
+      <div class="controls">
 
+        <%=f.select(:assign_id, options_for_select(
+            User.all.map do |u|
+              [u.name, u.id]
+            end)) %>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <%= f.label "Status", class:'control-label' %>
+      <div class="controls">
+        <%=f.select(:status, options_for_select([['cancelled', 'cancelled'],
+                                                      ['in progress', 'in_progress'],
+                                                      ['completed', 'completed'],
+                                                      ['waiting', 'waiting']])) %>
+      </div>
+    </div>
 
     <%= f.submit "Submit" %>
 
