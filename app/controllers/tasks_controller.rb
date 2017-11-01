@@ -1,7 +1,7 @@
 class TasksController < ApplicationController
 
   before_action :set_current_user
-  before_action :set_page, only: [:show]
+  before_action :set_page, only: [:show, :edit, :update]
 
   def index
     @tasks= Task.all
@@ -11,6 +11,7 @@ class TasksController < ApplicationController
   def show
 
   end
+
 
   def new
 
@@ -32,6 +33,20 @@ class TasksController < ApplicationController
       render 'new'
     end
   end
+
+  def edit
+
+
+  end
+
+  def update
+
+  @task.update(task_params)
+  redirect_to tasks_path
+
+  end
+
+
 
   def destroy
     Task.find(params[:id]).destroy

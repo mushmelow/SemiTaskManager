@@ -1,0 +1,33 @@
+<table class="table table-bordered dataTable" id="dataTable" width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info" style="width: 100%;">
+  <thead>
+  <tr role="row"><th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="User id: activate to sort column descending" aria-sort="ascending" style="width: 257px;">User id</th>
+    <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="User name: activate to sort column ascending" style="width: 410px;">User name</th>
+    <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Role: activate to sort column ascending" style="width: 410px;">Role</th>
+
+
+  </tr>
+  </thead>
+  <tfoot>
+  <th rowspan="1" colspan="1">User id</th>
+  <th rowspan="1" colspan="1">User Name</th>
+  <th rowspan="1" colspan="1">Role</th>
+  </tfoot>
+  <tbody>
+
+  <% @users.each do |user| %>
+
+      <tr role="row" class="odd">
+
+        <td class="sorting_1"> <%= user.id %> </td>
+        <td>
+          <%=link_to(user.name.capitalize, user_path(user))%>
+        <td>
+        <%= user.roles.map{|role| role.name.capitalize}.join(", ") %>
+        </td>
+
+
+      </tr>
+  <% end %>
+
+  </tbody>
+</table>

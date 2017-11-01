@@ -1,8 +1,11 @@
 Rails.application.routes.draw do
 
-  resources :users, only:[:new, :create]
-  resources :tasks
+  resources :users, only:[:index, :new, :create, :show, :edit]
   resources :sessions, only: [:create, :new, :destroy]
+  resources :tasks do
+    resources :comments, only: [:create]
+  end
+
 
   root :to => "tasks#index"
 

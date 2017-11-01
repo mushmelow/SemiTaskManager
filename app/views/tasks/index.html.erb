@@ -62,9 +62,9 @@
 
                 <td class="sorting_1"> <%= task.id %> </td>
                 <td><%= task.name %></td>
-                <td><%= task.author.name %></td>
+                <td><%= link_to(task.author.name,user_path(task.author)) %></td>
                 <td><%= task.assign.name %></td>
-                <td><%= task.description %></td>
+                <td><%= truncate(task.description,length: 30) %></td>
                 <td><%= task.status %></td>
                 <td><%= task.created_at%> </td>
                 <td>

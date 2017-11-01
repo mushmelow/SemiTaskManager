@@ -1,12 +1,18 @@
 class UsersController < ApplicationController
 
   before_action :set_current_user, except: [:new, :create]
-  before_action :set_page, only: [:show]
+  before_action :is_admin?, only: [:edit, :destroy]
 
-
+  def index
+    @users= User.all
+  end
 
   def new
     @user = User.new
+  end
+
+  def show
+    set_page
   end
 
   def create
@@ -18,7 +24,14 @@ class UsersController < ApplicationController
 
       render 'new'
     end
+
+    def edit
+      set_page
+      exit
+    end
   end
+
+
 
   private
 

@@ -9,8 +9,29 @@
 <p> assign to: <%=  User.find(@task.assign).name %> </p>
 
 
+<ul>
+  <%@task.comments.each do |comment| %>
+    <li><%= comment.content %></li>
+      <p><%= comment.user.name %>, <%= comment.created_at%> </p>
+  <% end %>
+</ul>
+
+<%= form_for("comment", url: task_comments_path(@task)) do |f| %>
+
+    <div class="name">
+      <%= f.label :content %>
+      <%= f.text_field :content %>
+
+    </div>
+    <%= f.submit "Submit" %>
+
+<% end %>
+
+
+
 
 <p> <%= link_to("Create a subtask", new_task_path(parent_id:@task.id )) %> </p>
 <p> <%= link_to("Delete task", task_path,method: "delete") %> </p>
+<p> <%= link_to("Edit", edit_task_path(@task))%></p>
 <p> <%= link_to("link to all task", tasks_path) %> </p>
 

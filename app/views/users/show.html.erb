@@ -1,1 +1,11 @@
-<h1><%= @user.name %></h1>
+<div class="name">
+  <p><%= @user.name%></p>
+
+  <%= @user.roles.map{|role| role.name.capitalize}.join(", ") %>
+
+  <% if @user.is_admin? %>
+    <%= link_to "Delete all roles",  %>
+
+  <% end %>
+
+</div>
