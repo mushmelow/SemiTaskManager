@@ -4,7 +4,8 @@ class TasksController < ApplicationController
   before_action :set_page, only: [:show, :edit]
 
   def index
-    @tasks= Task.all
+
+    @tasks= Task.where(parent_id: nil)
 
   end
 
@@ -17,6 +18,8 @@ class TasksController < ApplicationController
 
     @task = Task.new(parent_id: params[:parent_id])
 
+
+
   end
 
   def create
@@ -24,7 +27,7 @@ class TasksController < ApplicationController
     @task = Task.new(task_params)
     @task.author = @current_user
     @task.assign_id= task_params[:assign_id]
-
+    @task.parent_id= params.require(:parent_id)
 
     if @task.save
       redirect_to task_path(@task)

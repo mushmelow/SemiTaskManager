@@ -58,21 +58,23 @@
 
             <% @tasks.each do |task| %>
 
-              <tr role="row" class="odd">
 
-                <td class="sorting_1"> <%= task.id %> </td>
-                <td><%= task.name %></td>
-                <td><%= link_to(task.author.name,user_path(task.author)) %></td>
-                <td><%= task.assign.name %></td>
-                <td><%= truncate(task.description,length: 30) %></td>
-                <td><%= task.status %></td>
-                <td><%= task.created_at%> </td>
-                <td>
-                  <%= link_to("Link to task", task_path(task)) %>
-                </td>
+                <tr role="row" class="odd">
 
-              </tr>
-            <% end %>
+                  <td class="sorting_1"> <%= task.id %> </td>
+                  <td><%= task.name %></td>
+                  <td><%= link_to(task.author.name,user_path(task.author)) %></td>
+                  <td><%= task.assign.name %></td>
+                  <td><%= truncate(task.description,length: 30) %></td>
+                  <td><%= task.status %></td>
+                  <td><%= task.created_at%> </td>
+                  <td>
+                    <%= link_to("Link to task", task_path(task)) %>
+                  </td>
+
+                </tr>
+
+            <%end %>
 
             </tbody>
           </table>

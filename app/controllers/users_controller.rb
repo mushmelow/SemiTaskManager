@@ -35,8 +35,16 @@ class UsersController < ApplicationController
 
     set_page.update(update_params)
 
-    exit
+    if role_params.present?
+      @user.assignments.where(user_id:@user.id).destroy_all
 
+      if role_params.include?(1.to_s)
+        @user.assignments.create(role_id:1)
+      end
+      if role_params.include?(2.to_s)
+        @user.assignments.create(role_id:2)
+      end
+    end
 
     redirect_to users_path
   end
@@ -53,5 +61,7 @@ class UsersController < ApplicationController
   def update_params
     params.require(:user).permit(:name, :email)
   end
-
+  def role_params
+    params[:role]
+  end
 end
