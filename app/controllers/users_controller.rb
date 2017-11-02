@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
 
   before_action :set_current_user, except: [:new, :create]
-  before_action :is_admin?, only: [:edit, :destroy]
+
 
   def index
     @users= User.all
@@ -24,14 +24,22 @@ class UsersController < ApplicationController
 
       render 'new'
     end
-
-    def edit
-      set_page
-      exit
-    end
   end
 
+  def edit
+    set_page
 
+  end
+
+  def update
+
+    set_page.update(update_params)
+
+    exit
+
+
+    redirect_to users_path
+  end
 
   private
 
@@ -41,4 +49,9 @@ class UsersController < ApplicationController
   def user_params
     params.require(:user).permit(:name, :email, :password, :password_confirmation)
   end
+
+  def update_params
+    params.require(:user).permit(:name, :email)
+  end
+
 end

@@ -3,9 +3,10 @@
 
   <%= @user.roles.map{|role| role.name.capitalize}.join(", ") %>
 
-  <% if @user.is_admin? %>
-    <%= link_to "Delete all roles",  %>
-
-  <% end %>
+    <% if @current_user.is_admin? %>
+      <p>
+      <%= link_to("Edit user", edit_user_path(@user)) %>
+      </p>
+    <% end %>
 
 </div>

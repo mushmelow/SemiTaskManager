@@ -1,7 +1,7 @@
 class TasksController < ApplicationController
 
   before_action :set_current_user
-  before_action :set_page, only: [:show, :edit, :update]
+  before_action :set_page, only: [:show, :edit]
 
   def index
     @tasks= Task.all
@@ -36,13 +36,12 @@ class TasksController < ApplicationController
 
   def edit
 
-
   end
 
   def update
 
-  @task.update(task_params)
-  redirect_to tasks_path
+    set_page.update(task_params)
+    redirect_to tasks_path
 
   end
 
