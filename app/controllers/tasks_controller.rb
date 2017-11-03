@@ -27,8 +27,9 @@ class TasksController < ApplicationController
     @task = Task.new(task_params)
     @task.author = @current_user
     @task.assign_id= task_params[:assign_id]
+    if params[:parent_id].present?
     @task.parent_id= params.require(:parent_id)
-
+    end
     if @task.save
       redirect_to task_path(@task)
     else
@@ -47,8 +48,6 @@ class TasksController < ApplicationController
     redirect_to tasks_path
 
   end
-
-
 
   def destroy
     Task.find(params[:id]).destroy

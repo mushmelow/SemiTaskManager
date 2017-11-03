@@ -4,7 +4,7 @@ class User < ApplicationRecord
   has_many :comments
 
   has_many :tasks
-  has_many :assign_tasks, class_name: "Task", foreign_key: "assign_id"
+  has_many :assign_tasks, class_name: "Task", foreign_key: "assign_id", dependent: :nullify
 
   before_save { self.email = email.downcase }
 
@@ -16,7 +16,7 @@ class User < ApplicationRecord
             format:{ with: VALID_EMAIL_REGEX }
 
   def is_admin?
-   return self.roles.map{|role| role.name }.include?("user")
+   return self.roles.map{|role| role.name }.include?("admin")
   end
 
   def is_role?(role_name)

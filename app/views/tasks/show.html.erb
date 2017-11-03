@@ -35,7 +35,7 @@
 </ul>
 
 <p> <%= link_to("Create a subtask", new_task_path(parent_id:@task.id )) %> </p>
-<p> <%= link_to("Delete task", task_path,method: "delete") %> </p>
+<p> <%= link_to("Delete task", task_path, method: "delete") %> </p>
 <p> <%= link_to("Edit", edit_task_path(@task))%></p>
 <p> <%= link_to("link to all task", tasks_path) %> </p>
 
