@@ -15,8 +15,9 @@ class User < ApplicationRecord
   validates :email, presence: true, uniqueness: true, length: {maximum: 225},
             format:{ with: VALID_EMAIL_REGEX }
 
+
   def is_admin?
-   return self.roles.map{|role| role.name }.include?("admin")
+    return self.roles.map{|role| role.name }.include?("admin")
   end
 
   def is_role?(role_name)

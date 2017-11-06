@@ -10,7 +10,7 @@
 
     <div class="name">
       <%= f.label :description %>
-      <%= f.text_field :description %>
+      <%= f.text_area :description %>
     </div>
 
     <div class="control-group">
@@ -27,10 +27,9 @@
     <div class="control-group">
       <%= f.label "Status", class:'control-label' %>
       <div class="controls">
-        <%=f.select(:status, options_for_select([['cancelled', 'cancelled'],
-                                                      ['in progress', 'in_progress'],
-                                                      ['completed', 'completed'],
-                                                      ['waiting', 'waiting']])) %>
+
+        <%=f.select(:status, options_for_select(Task.statuses.map { |status| [status.first, status.first]}))  %>
+
       </div>
     </div>
 

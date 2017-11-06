@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
 
   before_action :set_current_user, except: [:new, :create]
-  before_action :set_page, only: [:show,:edit,:update,:destroy]
+  before_action :set_page, only: [:show,:edit,:update]
 
   def index
     @users= User.all
@@ -19,7 +19,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
 
     if @user.save
-      @user.assignments.create(role_id:2)
+      @user.assignments.create(role: Role.where(name:"user").first)
       redirect_to new_session_path
     else
       render 'new'
@@ -34,24 +34,13 @@ class UsersController < ApplicationController
     @user.update(user_params)
     @user.assignments.where(user_id:@user.id).destroy_all
 
-    if role_params.present?
-
-      if role_params.include?(1.to_s)
-        @user.assignments.create(role_id:1)
+      params[:role].each do |role|
+      @user.assignments.create(role: Role.where(name:role).first)
       end
-      if role_params.include?(2.to_s)
-        @user.assignments.create(role_id:2)
-      end
-    end
 
     redirect_to users_path
   end
 
-  def destroy
-    @user.authors
-    @user.destroy
-    redirect_to users_path
-  end
 
   private
 
@@ -61,7 +50,5 @@ class UsersController < ApplicationController
   def user_params
     params.require(:user).permit(:name, :email, :password, :password_confirmation)
   end
-  def role_params
-    params[:role]
-  end
+
 end

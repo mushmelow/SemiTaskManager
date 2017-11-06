@@ -13,6 +13,10 @@
   <%@task.comments.each do |comment| %>
     <li><%= comment.content %></li>
       <p><%= comment.user.name %>, <%= comment.created_at%> </p>
+      <% if @current_user.is_admin?%>
+        <%= link_to("Delete comment", task_comment_path(task_id: @task.id, id: comment.id) ,method: "delete") %>
+      <% end %>
+      </p>
   <% end %>
 </ul>
 
@@ -35,7 +39,12 @@
 </ul>
 
 <p> <%= link_to("Create a subtask", new_task_path(parent_id:@task.id )) %> </p>
+
+<% if @current_user.is_admin?%>
 <p> <%= link_to("Delete task", task_path, method: "delete") %> </p>
-<p> <%= link_to("Edit", edit_task_path(@task))%></p>
+<% end %>
+
+<p><%= link_to("Edit", edit_task_path(@task))%></p>
+
 <p> <%= link_to("link to all task", tasks_path) %> </p>
 

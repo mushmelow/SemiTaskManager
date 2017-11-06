@@ -2,31 +2,25 @@
 
     <%= form_for(@user)do |f| %>
 
-
           <%= f.label :name %>
           <%= f.text_field :name, class: 'form-control'%>
-
 
           <%= f.label :email %>
           <%= f.text_field :email, class: 'form-control' %>
 
-
-
           <%= f.label :password %>
           <%= f.password_field :password, class: 'form-control' %>
-
-
 
           <%= f.label :password_confirmation %>
           <%= f.password_field :password_confirmation, class: 'form-control' %>
 
-          <% if  @current_user.present?%>
+          <% if  @current_user.present? && @current_user.roles.first.name== "admin"%>
             <div class="name">
               <b>Role</b><br />
 
               <% Role.all.each do |role| %>
 
-                  <%= check_box_tag("role[]",role.id,@user.is_role?(role.name))%>
+                  <%= check_box_tag("role[]",role.name,@user.is_role?(role.name))%>
                   <%=role.name%> <br>
               <% end %>
             </div>
@@ -42,7 +36,6 @@
             </ul>
         <%end%>
         </div>
-
 
         <%= f.submit "Submit", class: "btn btn-primary" %>
 

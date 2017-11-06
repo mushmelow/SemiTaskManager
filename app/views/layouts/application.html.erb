@@ -19,14 +19,15 @@
         <li class="active">  <%= link_to("Home",tasks_path) %> </li>
         <li class="active">  <%= link_to("Users",users_path) %></li>
       </ul>
-
       <ul class="nav navbar-nav navbar-right">
         <% if @current_user.present?%>
-        <li>
-          <span class="glyphicon glyphicon-user">
-             <%= link_to("Logout",session_path(session),method: "delete") %>
-          </span>
-        </li>
+
+          <li>
+            <span class="glyphicon glyphicon-user">
+               <%= link_to("Logout",session_path(session),method: "delete") %>
+              <p style="color:white">Bonjour: <%=@current_user.name %></p>
+            </span>
+          </li>
         <% end %>
       </ul>
     </div>
