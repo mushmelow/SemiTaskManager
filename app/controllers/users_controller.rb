@@ -31,14 +31,18 @@ class UsersController < ApplicationController
   end
 
   def update
-    @user.update(user_params)
-    @user.assignments.where(user_id:@user.id).destroy_all
 
+    if @user.update(user_params)
+    @user.assignments.where(user_id:@user.id).destroy_all
       params[:role].each do |role|
       @user.assignments.create(role: Role.where(name:role).first)
       end
-
     redirect_to users_path
+    else
+      render 'edit'
+    end
+
+
   end
 
 
