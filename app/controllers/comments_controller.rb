@@ -7,14 +7,14 @@ class CommentsController < ActionController::Base
     @comment= Comment.create(content:content, task_id: taskId, user_id: session[:user_id])
 
     if @comment.present?
-      redirect_to task_path(@comment.task)
+      redirect_to project_task_path(params[:project_id],@comment.task)
     end
 
   end
 
   def destroy
     @comment.destroy()
-    redirect_to task_path(params[:task_id])
+    redirect_to project_task_path(params[:project_id],params[:task_id])
 
   end
 

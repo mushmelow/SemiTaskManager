@@ -6,7 +6,7 @@ class SessionsController < ApplicationController
 
     if user && user.authenticate(params[:session][:password])
       session[:user_id] = user.id
-      redirect_to tasks_path
+      redirect_to projects_path
 
     else
       render 'new'

@@ -69,7 +69,7 @@
                   <td><%= task.status %></td>
                   <td><%= task.created_at%> </td>
                   <td>
-                    <%= link_to("Link to task", task_path(task)) %>
+                    <%= link_to("Link to task", project_task_path(params[:project_id],task)) %>
                   </td>
 
                 </tr>
@@ -107,6 +107,6 @@
 
 
 
-    <%= link_to("Create a new task", new_task_path) %>
+    <%= link_to("Create a new task", new_project_task_path(params[:project_id])) %>
   </div>
 </div>

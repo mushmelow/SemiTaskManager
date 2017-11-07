@@ -14,13 +14,13 @@
     <li><%= comment.content %></li>
       <p><%= comment.user.name %>, <%= comment.created_at%> </p>
       <% if @current_user.is_admin?%>
-        <%= link_to("Delete comment", task_comment_path(task_id: @task.id, id: comment.id) ,method: "delete") %>
+        <%= link_to("Delete comment", project_task_comment_path(params[:project_id],task_id: @task.id, id: comment.id) ,method: "delete") %>
       <% end %>
       </p>
   <% end %>
 </ul>
 
-<%= form_for("comment", url: task_comments_path(@task)) do |f| %>
+<%= form_for("comment", url: project_task_comments_path(params[:project_id],@task)) do |f| %>
 
     <div class="name">
       <%= f.label :comments %>
@@ -34,17 +34,17 @@
 
 <ul>
   <%@task.sub_tasks.each do |subtask| %>
-    <li> <%= link_to(subtask.name, task_path(subtask.id))%> </li>
+    <li> <%= link_to(subtask.name, project_task_path(params[:project_id],subtask.id))%> </li>
   <% end %>
 </ul>
 
-<p> <%= link_to("Create a subtask", new_task_path(parent_id:@task.id )) %> </p>
+<p> <%= link_to("Create a subtask", new_project_task_path(params[:project_id],parent_id:@task.id )) %> </p>
 
 <% if @current_user.is_admin?%>
-<p> <%= link_to("Delete task", task_path, method: "delete") %> </p>
+<p> <%= link_to("Delete task", project_task_path(params[:project_id]), method: "delete") %> </p>
 <% end %>
 
-<p><%= link_to("Edit", edit_task_path(@task))%></p>
+<p><%= link_to("Edit", edit_project_task_path(params[:project_id],@task))%></p>
 
-<p> <%= link_to("link to all task", tasks_path) %> </p>
+<p> <%= link_to("link to all task", project_tasks_path(params[:project_id])) %> </p>
 

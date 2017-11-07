@@ -5,6 +5,7 @@ class TasksController < ApplicationController
 
   def index
     @tasks= Task.where(parent_id: nil)
+
   end
 
   def show
@@ -20,11 +21,12 @@ class TasksController < ApplicationController
     @task = Task.new(task_params)
     @task.author = @current_user
     @task.assign_id= task_params[:assign_id]
+    @task.project_id= params[:project_id].to_i
     if params[:parent_id].present?
       @task.parent_id= params.require(:parent_id)
     end
     if @task.save
-      redirect_to task_path(@task)
+      redirect_to project_tasks_path(@task.project_id)
     else
       render 'new'
     end
@@ -43,7 +45,7 @@ class TasksController < ApplicationController
 
   def destroy
     @task.destroy
-    redirect_to tasks_path
+    redirect_to project_tasks_path
   end
 
   private
@@ -52,7 +54,7 @@ class TasksController < ApplicationController
   end
 
   def task_params
-    params.require(:task).permit(:name, :description, :assign_id, :status)
+    params.require(:task).permit(:name, :description, :assign_id, :status, :project_id)
   end
 
 

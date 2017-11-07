@@ -1,6 +1,4 @@
-
-
-<%= form_for(@task)do |f| %>
+<%= form_for(@task,url: {action: "create"})do |f| %>
 
     <div class="name">
       <%= f.label :name %>
