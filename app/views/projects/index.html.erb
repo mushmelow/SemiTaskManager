@@ -1,10 +1,12 @@
 <tbody>
 
 <% @projects.each do |project| %>
+<ul>
     <tr role="row" class="odd">
       <td class="sorting_1"> <%= project.id %> </td>
       <td> <%= link_to(project.title, project_path(project))%> </td>
     </tr>
+</ul>
 <%end %>
 
 </tbody>

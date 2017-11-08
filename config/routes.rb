@@ -4,7 +4,8 @@ Rails.application.routes.draw do
   resources :sessions, only: [:create, :new, :destroy]
   resources :projects do
     resources :tasks do
-      resources :comments, only: [:create, :destroy]
+      resources :comments, only: [:create, :destroy, :update, :edit]
+      resources :hours
     end
   end
 

@@ -9,7 +9,9 @@ class SessionsController < ApplicationController
       redirect_to projects_path
 
     else
+      flash[:notice] = "Wrong credential!!!"
       render 'new'
+
     end
   end
 

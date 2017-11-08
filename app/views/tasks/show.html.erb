@@ -8,29 +8,39 @@
 
 <p> assign to: <%=  User.find(@task.assign).name %> </p>
 
-
 <ul>
   <%@task.comments.each do |comment| %>
     <li><%= comment.content %></li>
       <p><%= comment.user.name %>, <%= comment.created_at%> </p>
       <% if @current_user.is_admin?%>
         <%= link_to("Delete comment", project_task_comment_path(params[:project_id],task_id: @task.id, id: comment.id) ,method: "delete") %>
-      <% end %>
-      </p>
+        <br>
+
+          <div class="comment">
+          <%= form_for(comment,url: project_task_comment_path(params[:project_id],@task,comment.id))do |f| %>
+              <div class="name">
+                <%= f.label :Modify_comments %>
+                <%= f.text_area :content %>
+              </div>
+              <%= f.submit "Submit" %>
+          <% end %>
+            <% if flash[:notice] %>
+                <div class="notice"><%= flash[:notice] %></div>
+            <% end %>
+          </div>
+
+        <% end %>
   <% end %>
 </ul>
 
 <%= form_for("comment", url: project_task_comments_path(params[:project_id],@task)) do |f| %>
-
     <div class="name">
       <%= f.label :comments %>
-      <%= f.text_field :content %>
+      <%= f.text_area :content %>
 
     </div>
     <%= f.submit "Submit" %>
-
 <% end %>
-
 
 <ul>
   <%@task.sub_tasks.each do |subtask| %>
@@ -47,4 +57,24 @@
 <p><%= link_to("Edit", edit_project_task_path(params[:project_id],@task))%></p>
 
 <p> <%= link_to("link to all task", project_tasks_path(params[:project_id])) %> </p>
+
+
+<%= form_for("hour", url: project_task_hours_path(params[:project_id],@task)) do |f| %>
+    <div class="name">
+      <%= f.label :Add_description_for_hour_spent %>
+      <%= f.text_area :description %>
+    </div>
+
+    <div class="name">
+      <%= f.label :Add_hours %>
+      <%= f.number_field :time_add %>
+    </div>
+
+
+    <%= f.submit "Submit" %>
+<% end %>
+
+
+  <p>Hours worked on this task:<%=@total%></p>
+
 
